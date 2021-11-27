@@ -8,7 +8,8 @@ public class CanDissapear : MonoBehaviour
 
     public void ThrowAway()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void ShowText()
