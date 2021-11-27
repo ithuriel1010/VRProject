@@ -42,6 +42,11 @@ public class HandAnimationControler : MonoBehaviour
                 animatorController.SetFloat("Trigger", triggerValue);
             }
 
+
+            //if(thisController.TryGetFeatureValue(CommonUsages.gripButton, out bool grip) && grip==true)
+            //{
+            //    Destroy()
+            //}
             //if (thisController.TryGetFeatureValue(CommonUsages.grip, out float gripValue) && gripValue > 0.1f)
             //{
             //    animatorController.SetFloat("Grip", gripValue);
