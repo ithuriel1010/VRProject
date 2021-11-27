@@ -10,7 +10,7 @@ public class HandAnimationControler : MonoBehaviour
 
     private Animator animatorController;
     private bool isControlerDetected = false;
-    // Start is called before the first frame update
+
     void Start()
     {
 
@@ -30,7 +30,6 @@ public class HandAnimationControler : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!isControlerDetected)
@@ -38,7 +37,7 @@ public class HandAnimationControler : MonoBehaviour
         else
         {
 
-            if (thisController.TryGetFeatureValue(CommonUsages.grip, out float triggerValue) && triggerValue > 0.01f)
+            if (thisController.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > 0.01f)
             {
                 animatorController.SetFloat("Trigger", triggerValue);
             }
