@@ -8,25 +8,19 @@ public class CanDissapear : MonoBehaviour
 
     public void ThrowAway()
     {
-        //Destroy(gameObject);
         gameObject.SetActive(false);
+
+        //Send notification to game manager that trash is picked up
+        GameManager.TrashDisposed();
     }
 
     public void ShowText()
     {
         Name.text = "Press Grab to throw away";
-        ///Name.SendMessage("Hello Transform");
     }
 
     public void DisappearText()
     {
         Name.text = "";
-        ///Name.SendMessage("Hello Transform");
     }
-    //public void ShowText()
-    //{
-    //    TextMesh textMesh = gameObject.GetComponent(typeof(TextMesh)) as TextMesh;
-
-    //    textMesh.text = ;
-    //}
 }
