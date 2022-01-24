@@ -21,9 +21,10 @@ public class GameManager : MonoBehaviour
     public XRRayInteractor ray;
     public Canvas menu;
     public static int playerScore = 0;
-    // and other right hand buttons
     private bool _menuButtonDown;
     public XRNode inputSource;
+    public Camera cam;
+
     private void Start()
     {
         eGameStatus = GameState.Playing;
@@ -55,12 +56,21 @@ public class GameManager : MonoBehaviour
             () => // On Button Down
             {
                 Debug.Log("Menu button down");
-                // Your functionality
 
                 if (ray.gameObject.activeSelf == false && menu.gameObject.activeSelf==false)
                 {
                     ray.gameObject.SetActive(true);
+
+                    Vector3 director = cam.transform.forward;
+                    Quaternion inverseRot = Quaternion.LookRotation(director);
+                    transform.rotation = inverseRot;
+                    Vector3 newPos = cam.transform.position + (director * 1);
+
+                    menu.gameObject.transform.position = newPos;
+                    menu.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+
                     menu.gameObject.SetActive(true);
+
                 }
                 else if (ray.gameObject.activeSelf == true && menu.gameObject.activeSelf == true)
                 {
