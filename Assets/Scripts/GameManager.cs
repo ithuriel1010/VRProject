@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     {
         Intro,
         Playing,
-        GameOver
+        GameOver,
+        Paused
     }
 
     public static GameState eGameStatus;
@@ -71,11 +72,14 @@ public class GameManager : MonoBehaviour
 
                     menu.gameObject.SetActive(true);
 
+                    eGameStatus = GameState.Paused;
+
                 }
                 else if (ray.gameObject.activeSelf == true && menu.gameObject.activeSelf == true)
                 {
                     ray.gameObject.SetActive(false);
                     menu.gameObject.SetActive(false);
+                    eGameStatus = GameState.Playing;
                 }
 
             },

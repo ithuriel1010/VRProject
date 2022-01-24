@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class ContinuousMovement : MonoBehaviour
 {    
     public float speed = 1;
-    public float gravity = 0.005f;
+    private float gravity;
     public XRNode inputSource;
     public XRNode inputSource2;
 
@@ -35,6 +35,11 @@ public class ContinuousMovement : MonoBehaviour
 
         InputDevice device2 = InputDevices.GetDeviceAtXRNode(inputSource2);
         device2.TryGetFeatureValue(CommonUsages.primary2DAxis, out inputAxis2);
+
+        if (GameManager.eGameStatus == GameManager.GameState.Playing)
+            gravity = 0.18f;
+        else
+            gravity = 0;
     }
 
     private void FixedUpdate()
