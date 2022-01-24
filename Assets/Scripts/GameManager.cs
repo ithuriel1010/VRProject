@@ -26,11 +26,21 @@ public class GameManager : MonoBehaviour
     public XRNode inputSource;
     public Camera cam;
 
+    public static GameManager instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = GameObject.FindObjectOfType<GameManager>();
+    }
+
     private void Start()
     {
-        eGameStatus = GameState.Playing;
-        ray.gameObject.SetActive(false);
-        menu.gameObject.SetActive(false);
+        eGameStatus = GameState.Intro;
+        //ray.gameObject.SetActive(false);
+        //menu.gameObject.SetActive(false);
+
+        //OpenMenuFirst();
     }
 
     private void Update()
@@ -51,6 +61,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void StartGame()
+    {
+        CloseMenu();
+    }
     private void MenuButtonControll()
     {
         InputDevice device = InputDevices.GetDeviceAtXRNode(inputSource);
@@ -62,6 +76,7 @@ public class GameManager : MonoBehaviour
                 if (ray.gameObject.activeSelf == false && menu.gameObject.activeSelf==false)
                 {
                     OpenMenu();
+                    ShowPointsInMenu();
 
                 }
                 else if (ray.gameObject.activeSelf == true && menu.gameObject.activeSelf == true)
@@ -120,8 +135,13 @@ public class GameManager : MonoBehaviour
         menu.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
 
         menu.gameObject.SetActive(true);
+        eGameStatus = GameState.Paused;
+
+    }
+    private void ShowPointsInMenu()
+    {
         var canvasUpdate = FindObjectOfType<CanvasUpdate>();
         canvasUpdate.UpdateScore(playerScore);
-        eGameStatus = GameState.Paused;
     }
+
 }
