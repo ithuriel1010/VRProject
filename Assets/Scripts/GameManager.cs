@@ -19,38 +19,21 @@ public class GameManager : MonoBehaviour
     public static event TrashHandler TrashThrownAway;
 
     public XRRayInteractor ray;
+    public Canvas menu;
     public static int playerScore = 0;
     // and other right hand buttons
-    private bool _leftTriggerDown;
+    private bool _menuButtonDown;
     public XRNode inputSource;
     private void Start()
     {
         eGameStatus = GameState.Playing;
+        ray.gameObject.SetActive(false);
+        menu.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        InputDevice device = InputDevices.GetDeviceAtXRNode(inputSource);
-        ProcessInputDeviceButton(device, InputHelpers.Button.MenuButton, ref _leftTriggerDown,
-            () => // On Button Down
-            {
-                Debug.Log("Left hand trigger down");
-                // Your functionality
-                
-                if (ray.gameObject.activeSelf == false)
-                {
-                    ray.gameObject.SetActive(true);
-                }
-                else if (ray.gameObject.activeSelf == true)
-                {
-                    ray.gameObject.SetActive(false);
-                }
-
-            },
-            () => // On Button Up
-            {
-                Debug.Log("Left hand trigger up");
-            });
+        MenuButtonControll();
     }
     public static void TrashDisposed()
     {
@@ -63,6 +46,33 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Not in play mode");
         }
+    }
+
+    private void MenuButtonControll()
+    {
+        InputDevice device = InputDevices.GetDeviceAtXRNode(inputSource);
+        ProcessInputDeviceButton(device, InputHelpers.Button.MenuButton, ref _menuButtonDown,
+            () => // On Button Down
+            {
+                Debug.Log("Menu button down");
+                // Your functionality
+
+                if (ray.gameObject.activeSelf == false && menu.gameObject.activeSelf==false)
+                {
+                    ray.gameObject.SetActive(true);
+                    menu.gameObject.SetActive(true);
+                }
+                else if (ray.gameObject.activeSelf == true && menu.gameObject.activeSelf == true)
+                {
+                    ray.gameObject.SetActive(false);
+                    menu.gameObject.SetActive(false);
+                }
+
+            },
+            () => // On Button Up
+            {
+                Debug.Log("Menu button up");
+            });
     }
 
 
