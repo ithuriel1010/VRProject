@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         {
             playerScore += 1;
             TrashThrownAway();
+            
         }
         else
         {
@@ -60,26 +61,12 @@ public class GameManager : MonoBehaviour
 
                 if (ray.gameObject.activeSelf == false && menu.gameObject.activeSelf==false)
                 {
-                    ray.gameObject.SetActive(true);
-
-                    Vector3 director = cam.transform.forward;
-                    Quaternion inverseRot = Quaternion.LookRotation(director);
-                    transform.rotation = inverseRot;
-                    Vector3 newPos = cam.transform.position + (director * 1);
-
-                    menu.gameObject.transform.position = newPos;
-                    menu.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-
-                    menu.gameObject.SetActive(true);
-
-                    eGameStatus = GameState.Paused;
+                    OpenMenu();
 
                 }
                 else if (ray.gameObject.activeSelf == true && menu.gameObject.activeSelf == true)
                 {
-                    ray.gameObject.SetActive(false);
-                    menu.gameObject.SetActive(false);
-                    eGameStatus = GameState.Playing;
+                    CloseMenu();
                 }
 
             },
@@ -111,5 +98,30 @@ public class GameManager : MonoBehaviour
 
             _wasPressedDownPreviousFrame = false;
         }
+    }
+
+    private void CloseMenu()
+    {
+        ray.gameObject.SetActive(false);
+        menu.gameObject.SetActive(false);
+        eGameStatus = GameState.Playing;
+    }
+
+    private void OpenMenu()
+    {
+        ray.gameObject.SetActive(true);
+
+        Vector3 director = cam.transform.forward;
+        Quaternion inverseRot = Quaternion.LookRotation(director);
+        transform.rotation = inverseRot;
+        Vector3 newPos = cam.transform.position + (director * 1);
+
+        menu.gameObject.transform.position = newPos;
+        menu.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+
+        menu.gameObject.SetActive(true);
+        var canvasUpdate = FindObjectOfType<CanvasUpdate>();
+        canvasUpdate.UpdateScore(playerScore);
+        eGameStatus = GameState.Paused;
     }
 }
