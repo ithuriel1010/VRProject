@@ -989,6 +989,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f54b2b893e37c44dac7822dc56bed1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ray: {fileID: 714672647}
+  inputSource: 4
 --- !u!4 &396402947
 Transform:
   m_ObjectHideFlags: 0
@@ -1903,6 +1905,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45cd971706ee5b47aa261e3728501cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _leftTriggerDown: 0
+  _leftGripDown: 0
+  _rightTriggerDown: 0
+  _rightGripDown: 0
+  inputSource: 4
 --- !u!1001 &756105783
 PrefabInstance:
   m_ObjectHideFlags: 0
