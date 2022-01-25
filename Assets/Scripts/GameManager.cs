@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance = null;
 
+    private int trashNumber;
+
     private void Awake()
     {
         if (instance == null)
@@ -73,18 +75,28 @@ public class GameManager : MonoBehaviour
         intro.gameObject.SetActive(false);
         //ray.gameObject.SetActive(false);
         eGameStatus = GameState.Before;
+        trashNumber = GetRandomNumber(3,10);
         beforeGameMenu.gameObject.SetActive(true);
+        ShowStartGameData(trashNumber);
+
     }
 
     public void StartSmallGame()
     {
+        RandomTrash(trashNumber);
+
         beforeGameMenu.gameObject.SetActive(false);
-        ray.gameObject.SetActive(false);
-        RandomTrash();
+        ray.gameObject.SetActive(false);        
         eGameStatus = GameState.Playing;
-
-
     }
+
+    private int GetRandomNumber(int min, int max)
+    {
+        System.Random r = new System.Random();
+
+        return r.Next(min, max);
+    }
+
     private void MenuButtonControll()
     {
         InputDevice device = InputDevices.GetDeviceAtXRNode(inputSource);
@@ -170,11 +182,17 @@ public class GameManager : MonoBehaviour
         canvasUpdate.UpdateScore(playerScore);
     }
 
-    private void RandomTrash()
+    private void ShowStartGameData(int trashNumber)
+    {
+        var canvasBegin = FindObjectOfType<Intro>();
+        canvasBegin.UpdateTrashNumber(trashNumber);
+    }
+
+    private void RandomTrash(int trashNumber)
     {
         System.Random r = new System.Random();
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < trashNumber; i++)
         {
             int x = r.Next(298, 305);
             int y = r.Next(45, 50);

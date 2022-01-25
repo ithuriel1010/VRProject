@@ -1220,6 +1220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2f2c22cc5ec7843beb7fff7dbc77cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrashNumber: {fileID: 0}
 --- !u!114 &300124510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5128,6 +5129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2f2c22cc5ec7843beb7fff7dbc77cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrashNumber: {fileID: 2028009136}
 --- !u!114 &1996120487
 MonoBehaviour:
   m_ObjectHideFlags: 0

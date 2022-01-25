@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Intro : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public TextMesh TrashNumber;
     void Start()
     {
         
@@ -24,5 +24,9 @@ public class Intro : MonoBehaviour
     public void StartGameButton()
     {
         GameManager.instance.StartSmallGame();
+    }
+    public void UpdateTrashNumber(int trashNumber)
+    {
+        TrashNumber.text = trashNumber.ToString();
     }
 }
