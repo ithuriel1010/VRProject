@@ -135,10 +135,10 @@ public class GameManager : MonoBehaviour
 
         ShowEndGameMenu();
 
-        var clones = GameObject.FindGameObjectsWithTag("TrashAndFish");
-        foreach (var clone in clones)
+        var trashAndFish = GameObject.FindGameObjectsWithTag("TrashAndFish");
+        foreach (var trashOrFish in trashAndFish)
         {
-            Destroy(clone);
+            Destroy(trashOrFish);
         }
     }
 
