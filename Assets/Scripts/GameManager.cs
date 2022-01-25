@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     private float gameTime = 0.0f;
-    private float gameEndTime = 60.0f;
+    public float gameEndTime = 60.0f;
 
     private int trashNumber;
 
@@ -59,16 +59,22 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        MenuButtonControll();
         if(eGameStatus== GameState.Playing)
         {
             gameTime += Time.deltaTime;
+
+            if(menu.gameObject.activeSelf==true)
+            {
+                ShowTimeInMenu(gameTime);
+            }
 
             if(gameTime>= gameEndTime)
             {
                 EndGame();
             }
         }
+        MenuButtonControll();
+
     }
     public static void TrashDisposed()
     {
@@ -82,6 +88,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Not in play mode");
         }
+    }
+
+    public float GetTime()
+    {
+        return gameTime;
     }
 
     public void StartGame()
@@ -131,12 +142,13 @@ public class GameManager : MonoBehaviour
         ProcessInputDeviceButton(device, InputHelpers.Button.MenuButton, ref _menuButtonDown,
             () => // On Button Down
             {
-                Debug.Log("Menu button down");
+                //Debug.Log("Menu button down");
 
                 if (ray.gameObject.activeSelf == false && menu.gameObject.activeSelf==false)
                 {
                     OpenMenu();
                     ShowPointsInMenu();
+                    ShowTimeInMenu(gameTime);
 
                 }
                 else if (ray.gameObject.activeSelf == true && menu.gameObject.activeSelf == true)
@@ -147,7 +159,7 @@ public class GameManager : MonoBehaviour
             },
             () => // On Button Up
             {
-                Debug.Log("Menu button up");
+                //Debug.Log("Menu button up");
             });
     }
 
@@ -210,6 +222,12 @@ public class GameManager : MonoBehaviour
         canvasUpdate.UpdateScore(playerScore);
     }
 
+    private void ShowTimeInMenu(float time)
+    {
+        var canvasUpdate = FindObjectOfType<CanvasUpdate>();
+        canvasUpdate.UpdateTime(time);
+    }
+
     private void ShowStartGameData(int trashNumber)
     {
         var canvasBegin = FindObjectOfType<Intro>();
@@ -228,7 +246,7 @@ public class GameManager : MonoBehaviour
 
             Instantiate(prefab, new Vector3(x, y, z), Quaternion.identity);
 
-            Debug.Log(x + " " + y + " " + z);
+            //Debug.Log(x + " " + y + " " + z);
         }
     }
 
