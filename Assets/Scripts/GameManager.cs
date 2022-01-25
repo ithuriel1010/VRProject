@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public Canvas menu;
     public Canvas intro;
     public Canvas beforeGameMenu;
+    public Canvas endGameMenu;
     public Transform prefab;
 
     public static int playerScore = 0;
@@ -32,6 +33,9 @@ public class GameManager : MonoBehaviour
     public Camera cam;
 
     public static GameManager instance = null;
+
+    private float gameTime = 0.0f;
+    private float gameEndTime = 60.0f;
 
     private int trashNumber;
 
@@ -46,6 +50,7 @@ public class GameManager : MonoBehaviour
         eGameStatus = GameState.Intro;
         //ray.gameObject.SetActive(false);
         menu.gameObject.SetActive(false);
+        endGameMenu.gameObject.SetActive(false);
         beforeGameMenu.gameObject.SetActive(false);
 
 
@@ -55,6 +60,15 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         MenuButtonControll();
+        if(eGameStatus== GameState.Playing)
+        {
+            gameTime += Time.deltaTime;
+
+            if(gameTime>= gameEndTime)
+            {
+                EndGame();
+            }
+        }
     }
     public static void TrashDisposed()
     {
@@ -95,6 +109,20 @@ public class GameManager : MonoBehaviour
         System.Random r = new System.Random();
 
         return r.Next(min, max);
+    }
+
+    public void EndGame()
+    {
+        //intro.gameObject.SetActive(false);
+        //ray.gameObject.SetActive(false);
+
+        if(menu.gameObject.activeSelf==true)
+        {
+            CloseMenu();
+        }
+
+        ShowEndGameMenu();
+
     }
 
     private void MenuButtonControll()
@@ -202,6 +230,29 @@ public class GameManager : MonoBehaviour
 
             Debug.Log(x + " " + y + " " + z);
         }
+    }
+
+    private void ShowEndGameMenu()
+    {
+        ray.gameObject.SetActive(true);
+
+        Vector3 director = cam.transform.forward;
+        Quaternion inverseRot = Quaternion.LookRotation(director);
+        transform.rotation = inverseRot;
+        Vector3 newPos = cam.transform.position + (director * 1);
+
+        endGameMenu.gameObject.transform.position = newPos;
+        endGameMenu.gameObject.transform.rotation = inverseRot;
+
+        //menu.gameObject.transform.rotation = Quaternion.Euler(menu.gameObject.transform.rotation.x, menu.gameObject.transform.rotation.y, menu.gameObject.transform.rotation.z);
+
+
+        //menu.gameObject.transform.rotation = Quaternion.Euler(inverseRot.x, inverseRot.y, inverseRot.z);
+
+
+        endGameMenu.gameObject.SetActive(true);
+        eGameStatus = GameState.GameOver;
+
     }
 
 }
