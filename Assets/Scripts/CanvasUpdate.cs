@@ -30,11 +30,11 @@ public class CanvasUpdate : MonoBehaviour
         ScoreText.text = score;
     }
 
-    public void UpdateTime(float time)
+    public void UpdateTime(float time, float endTime)
     {
         int roundedTime = (int)time;
 
-        int gameEndTimeInSeconds = (int)GameManager.instance.gameEndTime;
+        int gameEndTimeInSeconds = (int) endTime;
 
         int secondsLeft = gameEndTimeInSeconds - roundedTime;
         int minutesLeft = secondsLeft / 60;

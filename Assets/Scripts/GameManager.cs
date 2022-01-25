@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     private float gameTime = 0.0f;
-    public float gameEndTime = 60.0f;
+    private float gameEndTime = 10.0f;
 
     private int trashNumber;
 
@@ -97,7 +97,13 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        RestartPosition();
+        gameTime = 0;
+        trashScore = 0;
+
         intro.gameObject.SetActive(false);
+        endGameMenu.gameObject.SetActive(false);
+        
         //ray.gameObject.SetActive(false);
         eGameStatus = GameState.Before;
         trashNumber = GetRandomNumber(3,10);
@@ -122,6 +128,12 @@ public class GameManager : MonoBehaviour
         return r.Next(min, max);
     }
 
+    private void RestartPosition()
+    {
+        var movement = FindObjectOfType<ContinuousMovement>();
+        movement.ResetPosition();
+    }
+
     public void EndGame()
     {
         //intro.gameObject.SetActive(false);
@@ -134,6 +146,11 @@ public class GameManager : MonoBehaviour
 
         ShowEndGameMenu();
 
+        var clones = GameObject.FindGameObjectsWithTag("TrashAndFish");
+        foreach (var clone in clones)
+        {
+            Destroy(clone);
+        }
     }
 
     private void MenuButtonControll()
@@ -225,7 +242,7 @@ public class GameManager : MonoBehaviour
     private void ShowTimeInMenu(float time)
     {
         var canvasUpdate = FindObjectOfType<CanvasUpdate>();
-        canvasUpdate.UpdateTime(time);
+        canvasUpdate.UpdateTime(time, gameEndTime);
     }
 
     private void ShowStartGameData(int trashNumber)

@@ -19,11 +19,14 @@ public class ContinuousMovement : MonoBehaviour
     private Vector2 inputAxis;
     private Vector2 inputAxis2;
 
+    private Vector3 characterOriginalPosition;
+
     private CharacterController character;
     // Start is called before the first frame update
     void Start()
     {
         character = GetComponent<CharacterController>();
+        characterOriginalPosition = character.transform.position;
         rig = GetComponent<XRRig>();
     }
 
@@ -82,5 +85,14 @@ public class ContinuousMovement : MonoBehaviour
         bool hasHit = Physics.SphereCast(rayStart, character.radius, Vector3.down, out RaycastHit hitInfo, rayLength, groundLayer);
 
         return hasHit;
+    }
+
+    public void ResetPosition()
+    {
+        character.enabled = false;
+        character.transform.position = characterOriginalPosition;
+        character.enabled = true;
+
+        //transform.position = new Vector3(301, 47, 97);
     }
 }
