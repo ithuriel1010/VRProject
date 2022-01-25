@@ -20,4 +20,9 @@ public class Intro : MonoBehaviour
     {
         GameManager.instance.StartGame();
     }
+
+    public void StartGameButton()
+    {
+        GameManager.instance.StartSmallGame();
+    }
 }
