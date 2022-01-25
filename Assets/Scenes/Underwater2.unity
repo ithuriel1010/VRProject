@@ -1221,6 +1221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrashNumber: {fileID: 0}
+  ResultTrash: {fileID: 0}
+  ResultFish: {fileID: 0}
 --- !u!114 &300124510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5815,6 +5817,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrashNumber: {fileID: 2028009136}
+  ResultTrash: {fileID: 0}
+  ResultFish: {fileID: 0}
 --- !u!114 &1996120487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5954,6 +5958,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrashNumber: {fileID: 1118295041}
+  ResultTrash: {fileID: 1118295041}
+  ResultFish: {fileID: 1905931489}
 --- !u!114 &2022276535
 MonoBehaviour:
   m_ObjectHideFlags: 0

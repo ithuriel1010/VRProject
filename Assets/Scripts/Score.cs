@@ -17,6 +17,6 @@ public class Score : MonoBehaviour
 
     private void DisplayScore()
     {
-        Debug.Log("Score: " + GameManager.playerScore);
+        Debug.Log("Score: " + GameManager.trashScore);
     }
 }

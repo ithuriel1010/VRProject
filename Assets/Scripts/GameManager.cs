@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public Canvas endGameMenu;
     public Transform prefab;
 
-    public static int playerScore = 0;
+    public static int trashScore = 0;
     private bool _menuButtonDown;
     public XRNode inputSource;
     public Camera cam;
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     {
         if(eGameStatus == GameState.Playing)
         {
-            playerScore += 1;
+            trashScore += 1;
             TrashThrownAway();
             
         }
@@ -219,7 +219,7 @@ public class GameManager : MonoBehaviour
     private void ShowPointsInMenu()
     {
         var canvasUpdate = FindObjectOfType<CanvasUpdate>();
-        canvasUpdate.UpdateScore(playerScore);
+        canvasUpdate.UpdateScore(trashScore, 0, trashNumber, 0);
     }
 
     private void ShowTimeInMenu(float time)
@@ -269,6 +269,10 @@ public class GameManager : MonoBehaviour
 
 
         endGameMenu.gameObject.SetActive(true);
+
+        var canvasEnd = FindObjectOfType<Intro>();
+        canvasEnd.ShowEndResults(trashScore, 0, trashNumber, 0);
+
         eGameStatus = GameState.GameOver;
 
     }

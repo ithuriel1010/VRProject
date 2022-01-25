@@ -13,7 +13,7 @@ public class CanvasUpdate : MonoBehaviour
     void Start()
     {
         //Intro.text = "Hello, nasza gra jest \n zajebista";
-        Points.text = "Twoje punkty:";
+        Points.text = "Twój postęp:";
         //ScoreText.text = "";
     }
 
@@ -23,10 +23,11 @@ public class CanvasUpdate : MonoBehaviour
         
     }
 
-    public void UpdateScore(int score)
+    public void UpdateScore(int trashScore, int fishScore, int trashGoal, int fishGoal)
     {
         //Points.text = "Twoje punkty:";
-        ScoreText.text = score.ToString();
+        string score = "Śmieci: " + trashScore + "/" + trashGoal + "\nRyby: " + fishScore + "/" + fishGoal;
+        ScoreText.text = score;
     }
 
     public void UpdateTime(float time)

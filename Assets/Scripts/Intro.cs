@@ -5,6 +5,9 @@ using UnityEngine;
 public class Intro : MonoBehaviour
 {
     public TextMesh TrashNumber;
+    public TextMesh ResultTrash;
+    public TextMesh ResultFish;
+
     void Start()
     {
         
@@ -28,5 +31,11 @@ public class Intro : MonoBehaviour
     public void UpdateTrashNumber(int trashNumber)
     {
         TrashNumber.text = trashNumber.ToString();
+    }
+
+    public void ShowEndResults(int trashScore, int fishScore, int trashGoal, int fishGoal)
+    {
+        ResultTrash.text = trashScore + "/" + trashGoal;
+        ResultFish.text = fishScore + "/" + fishGoal;
     }
 }
