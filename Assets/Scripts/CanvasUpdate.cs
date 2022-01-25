@@ -12,9 +12,9 @@ public class CanvasUpdate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Intro.text = "Hello, nasza gra jest \n zajebista";
-        Points.text = "";
-        ScoreText.text = "";
+        //Intro.text = "Hello, nasza gra jest \n zajebista";
+        Points.text = "Twoje punkty:";
+        ScoreText.text = "0";
     }
 
     // Update is called once per frame

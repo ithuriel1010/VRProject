@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     public XRRayInteractor ray;
     public Canvas menu;
+    public Canvas intro;
     public static int playerScore = 0;
     private bool _menuButtonDown;
     public XRNode inputSource;
@@ -38,7 +39,8 @@ public class GameManager : MonoBehaviour
     {
         eGameStatus = GameState.Intro;
         //ray.gameObject.SetActive(false);
-        //menu.gameObject.SetActive(false);
+        menu.gameObject.SetActive(false);
+
 
         //OpenMenuFirst();
     }
@@ -63,7 +65,9 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        CloseMenu();
+        intro.gameObject.SetActive(false);
+        ray.gameObject.SetActive(false);
+        eGameStatus = GameState.Playing;
     }
     private void MenuButtonControll()
     {
