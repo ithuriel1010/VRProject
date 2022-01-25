@@ -444,7 +444,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29102016}
-  m_Text: 'Twoje punkty:'
+  m_Text: "Tw\xF3j post\u0119p:"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1223,6 +1223,9 @@ MonoBehaviour:
   TrashNumber: {fileID: 0}
   ResultTrash: {fileID: 0}
   ResultFish: {fileID: 0}
+  ScoreText: {fileID: 0}
+  Time: {fileID: 0}
+  Points: {fileID: 0}
 --- !u!114 &300124510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4740,13 +4743,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1497871080}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7878a3ab5dc1d5c4b95ad398409b732e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b2f2c22cc5ec7843beb7fff7dbc77cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrashNumber: {fileID: 0}
+  ResultTrash: {fileID: 0}
+  ResultFish: {fileID: 0}
   ScoreText: {fileID: 682173184}
   Time: {fileID: 706201814}
   Points: {fileID: 29102018}
-  button: {fileID: 0}
 --- !u!1 &1516314714
 GameObject:
   m_ObjectHideFlags: 0
@@ -5913,6 +5918,9 @@ MonoBehaviour:
   TrashNumber: {fileID: 2028009136}
   ResultTrash: {fileID: 0}
   ResultFish: {fileID: 0}
+  ScoreText: {fileID: 0}
+  Time: {fileID: 0}
+  Points: {fileID: 0}
 --- !u!114 &1996120487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6054,6 +6062,9 @@ MonoBehaviour:
   TrashNumber: {fileID: 1118295041}
   ResultTrash: {fileID: 1118295041}
   ResultFish: {fileID: 1905931489}
+  ScoreText: {fileID: 0}
+  Time: {fileID: 0}
+  Points: {fileID: 0}
 --- !u!114 &2022276535
 MonoBehaviour:
   m_ObjectHideFlags: 0

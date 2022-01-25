@@ -1,26 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CanvasUpdate : MonoBehaviour
 {
+    public TextMesh TrashNumber;
+    public TextMesh ResultTrash;
+    public TextMesh ResultFish;
+
     public TextMesh ScoreText;
     public TextMesh Time;
     public TextMesh Points;
-    public Button button;
-    // Start is called before the first frame update
+
     void Start()
     {
-        //Intro.text = "Hello, nasza gra jest \n zajebista";
-        Points.text = "Twój postęp:";
-        //ScoreText.text = "";
+        //Points.text = "Twój postęp:";
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void OkIntro()
+    {
+        GameManager.instance.StartGame();
+    }
+
+    public void StartGameButton()
+    {
+        GameManager.instance.StartSmallGame();
+    }
+    public void UpdateTrashNumber(int trashNumber)
+    {
+        TrashNumber.text = trashNumber.ToString();
+    }
+
+    public void ShowEndResults(int trashScore, int fishScore, int trashGoal, int fishGoal)
+    {
+        ResultTrash.text = trashScore + "/" + trashGoal;
+        ResultFish.text = fishScore + "/" + fishGoal;
     }
 
     public void UpdateScore(int trashScore, int fishScore, int trashGoal, int fishGoal)
@@ -34,7 +54,7 @@ public class CanvasUpdate : MonoBehaviour
     {
         int roundedTime = (int)time;
 
-        int gameEndTimeInSeconds = (int) endTime;
+        int gameEndTimeInSeconds = (int)endTime;
 
         int secondsLeft = gameEndTimeInSeconds - roundedTime;
         int minutesLeft = secondsLeft / 60;
@@ -43,7 +63,6 @@ public class CanvasUpdate : MonoBehaviour
         string timeString = "Pozostały czas \n" + minutesLeft + ":" + partialSeconds;
 
         Time.text = timeString;
-         
-    }
 
+    }
 }

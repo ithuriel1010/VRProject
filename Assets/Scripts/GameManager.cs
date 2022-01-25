@@ -247,7 +247,7 @@ public class GameManager : MonoBehaviour
 
     private void ShowStartGameData(int trashNumber)
     {
-        var canvasBegin = FindObjectOfType<Intro>();
+        var canvasBegin = FindObjectOfType<CanvasUpdate>();
         canvasBegin.UpdateTrashNumber(trashNumber);
     }
 
@@ -287,7 +287,7 @@ public class GameManager : MonoBehaviour
 
         endGameMenu.gameObject.SetActive(true);
 
-        var canvasEnd = FindObjectOfType<Intro>();
+        var canvasEnd = FindObjectOfType<CanvasUpdate>();
         canvasEnd.ShowEndResults(trashScore, 0, trashNumber, 0);
 
         eGameStatus = GameState.GameOver;
