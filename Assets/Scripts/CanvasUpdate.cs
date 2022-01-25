@@ -14,8 +14,6 @@ public class CanvasUpdate : MonoBehaviour
 
     void Start()
     {
-        //Points.text = "Twój postęp:";
-
     }
 
     void Update()
@@ -25,12 +23,12 @@ public class CanvasUpdate : MonoBehaviour
 
     public void OkIntro()
     {
-        GameManager.instance.StartGame();
+        GameManager.instance.OkIntro();
     }
 
     public void StartGameButton()
     {
-        GameManager.instance.StartSmallGame();
+        GameManager.instance.StartGame();
     }
     public void UpdateTrashNumber(int trashNumber)
     {

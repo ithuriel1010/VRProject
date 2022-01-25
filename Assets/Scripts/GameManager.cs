@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     private float gameTime = 0.0f;
-    private float gameEndTime = 10.0f;
+    private float gameEndTime = 60.0f;
 
     private int trashNumber;
 
@@ -48,13 +48,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         eGameStatus = GameState.Intro;
-        //ray.gameObject.SetActive(false);
         menu.gameObject.SetActive(false);
         endGameMenu.gameObject.SetActive(false);
         beforeGameMenu.gameObject.SetActive(false);
-
-
-        //OpenMenuFirst();
     }
 
     private void Update()
@@ -73,6 +69,7 @@ public class GameManager : MonoBehaviour
                 EndGame();
             }
         }
+
         MenuButtonControll();
 
     }
@@ -81,12 +78,7 @@ public class GameManager : MonoBehaviour
         if(eGameStatus == GameState.Playing)
         {
             trashScore += 1;
-            TrashThrownAway();
-            
-        }
-        else
-        {
-            Debug.Log("Not in play mode");
+            TrashThrownAway();            
         }
     }
 
@@ -95,24 +87,24 @@ public class GameManager : MonoBehaviour
         return gameTime;
     }
 
-    public void StartGame()
+    public void OkIntro()
     {
+        eGameStatus = GameState.Before;
+
         RestartPosition();
         gameTime = 0;
         trashScore = 0;
 
+        trashNumber = GetRandomNumber(3, 10);
+        beforeGameMenu.gameObject.SetActive(true);
         intro.gameObject.SetActive(false);
         endGameMenu.gameObject.SetActive(false);
         
-        //ray.gameObject.SetActive(false);
-        eGameStatus = GameState.Before;
-        trashNumber = GetRandomNumber(3,10);
-        beforeGameMenu.gameObject.SetActive(true);
         ShowStartGameData(trashNumber);
 
     }
 
-    public void StartSmallGame()
+    public void StartGame()
     {
         RandomTrash(trashNumber);
 
@@ -136,9 +128,6 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        //intro.gameObject.SetActive(false);
-        //ray.gameObject.SetActive(false);
-
         if(menu.gameObject.activeSelf==true)
         {
             CloseMenu();
@@ -159,8 +148,6 @@ public class GameManager : MonoBehaviour
         ProcessInputDeviceButton(device, InputHelpers.Button.MenuButton, ref _menuButtonDown,
             () => // On Button Down
             {
-                //Debug.Log("Menu button down");
-
                 if (ray.gameObject.activeSelf == false && menu.gameObject.activeSelf==false)
                 {
                     OpenMenu();
@@ -176,7 +163,6 @@ public class GameManager : MonoBehaviour
             },
             () => // On Button Up
             {
-                //Debug.Log("Menu button up");
             });
     }
 
@@ -223,12 +209,6 @@ public class GameManager : MonoBehaviour
         menu.gameObject.transform.position = newPos;
         menu.gameObject.transform.rotation = inverseRot;
 
-        //menu.gameObject.transform.rotation = Quaternion.Euler(menu.gameObject.transform.rotation.x, menu.gameObject.transform.rotation.y, menu.gameObject.transform.rotation.z);
-
-
-        //menu.gameObject.transform.rotation = Quaternion.Euler(inverseRot.x, inverseRot.y, inverseRot.z);
-
-
         menu.gameObject.SetActive(true);
         eGameStatus = GameState.Paused;
 
@@ -262,8 +242,6 @@ public class GameManager : MonoBehaviour
             int z = r.Next(95, 100);
 
             Instantiate(prefab, new Vector3(x, y, z), Quaternion.identity);
-
-            //Debug.Log(x + " " + y + " " + z);
         }
     }
 
@@ -278,12 +256,6 @@ public class GameManager : MonoBehaviour
 
         endGameMenu.gameObject.transform.position = newPos;
         endGameMenu.gameObject.transform.rotation = inverseRot;
-
-        //menu.gameObject.transform.rotation = Quaternion.Euler(menu.gameObject.transform.rotation.x, menu.gameObject.transform.rotation.y, menu.gameObject.transform.rotation.z);
-
-
-        //menu.gameObject.transform.rotation = Quaternion.Euler(inverseRot.x, inverseRot.y, inverseRot.z);
-
 
         endGameMenu.gameObject.SetActive(true);
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanDissapear : MonoBehaviour
+public class Trash : MonoBehaviour
 {
     public TextMesh Name;
 
