@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public Canvas menu;
     public Canvas intro;
     public Canvas beforeGameMenu;
+    public Transform prefab;
+
     public static int playerScore = 0;
     private bool _menuButtonDown;
     public XRNode inputSource;
@@ -78,7 +80,10 @@ public class GameManager : MonoBehaviour
     {
         beforeGameMenu.gameObject.SetActive(false);
         ray.gameObject.SetActive(false);
+        RandomTrash();
         eGameStatus = GameState.Playing;
+
+
     }
     private void MenuButtonControll()
     {
@@ -147,7 +152,13 @@ public class GameManager : MonoBehaviour
         Vector3 newPos = cam.transform.position + (director * 1);
 
         menu.gameObject.transform.position = newPos;
-        menu.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+        menu.gameObject.transform.rotation = inverseRot;
+
+        //menu.gameObject.transform.rotation = Quaternion.Euler(menu.gameObject.transform.rotation.x, menu.gameObject.transform.rotation.y, menu.gameObject.transform.rotation.z);
+
+
+        //menu.gameObject.transform.rotation = Quaternion.Euler(inverseRot.x, inverseRot.y, inverseRot.z);
+
 
         menu.gameObject.SetActive(true);
         eGameStatus = GameState.Paused;
@@ -157,6 +168,22 @@ public class GameManager : MonoBehaviour
     {
         var canvasUpdate = FindObjectOfType<CanvasUpdate>();
         canvasUpdate.UpdateScore(playerScore);
+    }
+
+    private void RandomTrash()
+    {
+        System.Random r = new System.Random();
+
+        for (int i = 0; i < 10; i++)
+        {
+            int x = r.Next(298, 305);
+            int y = r.Next(45, 50);
+            int z = r.Next(95, 100);
+
+            Instantiate(prefab, new Vector3(x, y, z), Quaternion.identity);
+
+            Debug.Log(x + " " + y + " " + z);
+        }
     }
 
 }

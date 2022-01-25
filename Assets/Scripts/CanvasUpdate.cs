@@ -14,7 +14,7 @@ public class CanvasUpdate : MonoBehaviour
     {
         //Intro.text = "Hello, nasza gra jest \n zajebista";
         Points.text = "Twoje punkty:";
-        ScoreText.text = "0";
+        //ScoreText.text = "";
     }
 
     // Update is called once per frame
@@ -25,8 +25,7 @@ public class CanvasUpdate : MonoBehaviour
 
     public void UpdateScore(int score)
     {
-        Destroy(button);
-        Points.text = "Twoje punkty:";
+        //Points.text = "Twoje punkty:";
         ScoreText.text = score.ToString();
     }
 
