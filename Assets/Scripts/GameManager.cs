@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public Transform prefab;
 
     public static int trashScore = 0;
+    public static int pipeScore = 0;
     private bool _menuButtonDown;
     public XRNode inputSource;
     public Camera cam;
@@ -82,6 +83,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public static void PipeDisposed()
+    {
+        if (eGameStatus == GameState.Playing)
+        {
+            pipeScore += 1;
+        }
+    }
+
     public float GetTime()
     {
         return gameTime;
@@ -94,6 +103,7 @@ public class GameManager : MonoBehaviour
         RestartPosition();
         gameTime = 0;
         trashScore = 0;
+        pipeScore = 0;
 
         trashNumber = GetRandomNumber(3, 10);
         beforeGameMenu.gameObject.SetActive(true);
